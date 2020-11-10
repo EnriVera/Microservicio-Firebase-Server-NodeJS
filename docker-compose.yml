@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  server-express:
+    container_name: server-express
+    restart: always
+    build: .
+    ports:
+      - "192.168.0.6:5550:5550"
+    volumes:
+      - .:/usr/src/app
+    links:
+      - redis
+
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    restart: always
